@@ -12,6 +12,12 @@ class AuthRepository extends GetxController {
   final _auth = FirebaseAuth.instance;
   late final Rx<User?> firebaseUser;
 
+  _setInitialScreen(User? user) {
+    (user == null)
+        ? Get.offAll(() => const login())
+        : Get.offAll(() => const HomePage());
+  }
+
   @override
   void onReady() {
     // TODO: implement onReady
@@ -20,16 +26,12 @@ class AuthRepository extends GetxController {
     ever(firebaseUser, _setInitialScreen);
   }
 
-  _setInitialScreen(User? user) {
-    user == null
-        ? Get.offAll(() => const login())
-        : Get.offAll(() => const HomePage());
-  }
-
   Future<void> createUserWithEmailAndPassword(String email, String pass) async {
+    print(email);
+    print(pass);
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: pass);
-      //firebaseUser.value != null ? Get.offAll(() => const HomePage()):Get.offAll(() => const login());
+      firebaseUser.value != null ? Get.offAll(() => const login()):Get.offAll(() => const HomePage());
     } on FirebaseAuthException catch (e) {
       final ex = signUpWithEmailPasswordFailure.code(e.code);
       print('FIREBASE AUTH EXCEPTION - ${ex.message}');

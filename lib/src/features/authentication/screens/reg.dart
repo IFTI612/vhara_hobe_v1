@@ -108,13 +108,12 @@ class _regState extends State<reg> {
 
   Widget _inputUserName(String hintText,TextEditingController controller){
 
-    regC controller = Get.put(regC());
     var border = OutlineInputBorder(
         borderRadius: BorderRadius.circular(18),
         borderSide: const BorderSide(color: Colors.brown, width: 3));
     return TextField(
       style: const TextStyle(color: Colors.black),
-      controller: controller.UserName,
+      controller: controller,
       decoration: InputDecoration(
         icon: Icon(Icons.person,  color: Color.fromARGB(255, 243, 255, 253), size: 40),
         filled: true,
@@ -128,13 +127,13 @@ class _regState extends State<reg> {
   }
 
   Widget _inputfieldEmail(String hintText,TextEditingController controller){
-     regC controller = Get.put(regC());
+
     var border = OutlineInputBorder(
         borderRadius: BorderRadius.circular(18),
         borderSide: const BorderSide(color: Colors.brown, width: 3));
     return TextField(
       style: const TextStyle(color: Colors.black),
-      controller: controller.email,
+      controller: controller,
       decoration: InputDecoration(
         icon: Icon(Icons.email,  color: Color.fromARGB(255, 243, 255, 253), size: 40),
         filled: true,
@@ -149,13 +148,12 @@ class _regState extends State<reg> {
 
   Widget _inputfieldNID(String hintText,TextEditingController controller){
 
-    regC controller = Get.put(regC());
     var border = OutlineInputBorder(
         borderRadius: BorderRadius.circular(18),
         borderSide: const BorderSide(color: Colors.brown, width: 3));
     return TextField(
       style: const TextStyle(color: Colors.black),
-      controller: controller.nid,
+      controller: controller,
       decoration: InputDecoration(
         icon: Icon(Icons.card_travel,  color: Color.fromARGB(255, 243, 255, 253), size: 40),
         filled: true,
@@ -170,13 +168,12 @@ class _regState extends State<reg> {
 
   Widget _inputfieldPassword(String hintText,TextEditingController controller){
 
-    regC controller = Get.put(regC());
     var border = OutlineInputBorder(
         borderRadius: BorderRadius.circular(18),
         borderSide: const BorderSide(color: Colors.brown, width: 3));
     return TextField(
       style: const TextStyle(color: Colors.black),
-      controller: controller.pass,
+      controller: controller,
       decoration: InputDecoration(
         icon: Icon(Icons.key,  color: Color.fromARGB(255, 243, 255, 253), size: 40),
         filled: true,
@@ -206,9 +203,9 @@ class _regState extends State<reg> {
 
     regC controller = Get.put(regC());
     return ElevatedButton(onPressed: (){
-      if(_formKey.currentState!.validate()){
+      //if(_formKey.currentState!.validate()){
         regC.instance.registerUser(controller.email.text.trim(), controller.pass.text.trim());
-      }
+      //}
 
     },
       child:SizedBox(width: 100,
