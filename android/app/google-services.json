@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "571688300079",
+    "project_id": "vara-hobe-v1",
+    "storage_bucket": "vara-hobe-v1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571688300079:android:0fbc402d408b536029e0da",
+        "android_client_info": {
+          "package_name": "com.example.vhara_hobe_v1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8lR7_2FOHriN9i0PO_Qbx_PTowRJ9VwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
