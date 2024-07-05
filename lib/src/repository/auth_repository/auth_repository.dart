@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:vhara_hobe_v1/src/features/authentication/screens/home_page.dart';
@@ -11,6 +12,7 @@ class AuthRepository extends GetxController {
 
   //variables
   final _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   late final Rx<User?> firebaseUser;
 
   _setInitialScreen(User? user) {
@@ -29,8 +31,14 @@ class AuthRepository extends GetxController {
 
   Future<void> createUserWithEmailAndPassword(String email, String pass) async {
     try {
-      await _auth.createUserWithEmailAndPassword(email: email, password: pass);
+      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: pass);
       firebaseUser.value != null ? Get.offAll(() => const login()):Get.offAll(() => const HomePage());
+
+      _firestore.collection('users').doc(userCredential.user!.uid).set({
+        'uid' : userCredential.user!.uid, //Username + NID needs to be added
+        'email': email,
+      });
+
     } on FirebaseAuthException catch (e) {
       final ex = signUpWithEmailPasswordFailure.code(e.code);
       print('FIREBASE AUTH EXCEPTION - ${ex.message}');
@@ -44,8 +52,13 @@ class AuthRepository extends GetxController {
 
   Future<void> loginWithEmailAndPassword(String email, String pass) async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: pass);
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(email: email, password: pass);
       firebaseUser.value != null ? Get.offAll(() => const HomePage()) :Get.offAll(() => const login());
+
+      _firestore.collection('users').doc(userCredential.user!.uid).set({
+        'uid' : userCredential.user!.uid, //Username + NID needs to be added
+        'email': email,
+      });
     } on FirebaseAuthException catch (e) {
       final ex = signUpWithEmailPasswordFailure.code(e.code);
       print('FIREBASE AUTH EXCEPTION - ${ex.message}');
