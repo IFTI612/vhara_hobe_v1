@@ -144,12 +144,12 @@ class _loginState extends State<login> {
   }
 
   Widget _loginBtn() {
+    loginC controller = Get.put(loginC());
     return ElevatedButton(
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage()),
-        );
+        //if(_formKey.currentState!.validate()){
+          loginC.instance.onLogin(controller.email.text.trim(), controller.pass.text.trim());
+        //}
       },
       child: SizedBox(
         width: 100,
