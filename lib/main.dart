@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:vhara_hobe_v1/src/features/authentication/screens/login.dart';
 import 'package:vhara_hobe_v1/src/features/authentication/screens/splash.dart';
 import 'package:vhara_hobe_v1/src/repository/auth_repository/auth_repository.dart';
 import 'package:vhara_hobe_v1/src/utils/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 import 'package:get/get.dart';
 
 void main() async{
@@ -34,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
 
-      home: splash(),
+      home: const splash(),
 
 
     );
