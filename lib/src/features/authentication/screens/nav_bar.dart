@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:vhara_hobe_v1/src/features/authentication/screens/messenger.dart';
 
 import 'login.dart';
 
@@ -57,6 +59,16 @@ class _NavBarState extends State<NavBar> {
             leading: const Icon(Icons.favorite),
             title: const Text('My Listing'),
             onTap: () => print('My Listing'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.message),
+            title: const Text('Messages'),
+            onTap: ()  {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const messenger()),
+              );
+            },
           ),
           ListTile(
             leading: const Icon(Icons.logout),
