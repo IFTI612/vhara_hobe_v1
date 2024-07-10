@@ -29,22 +29,25 @@ class _AddRentalFormState extends State<AddRentalForm> {
   }
 
   Future<String> uploadImage(File image) async {
-    Reference storageReference = FirebaseStorage.instance.ref().child('rentals/${DateTime.now().millisecondsSinceEpoch}.jpg');
+    Reference storageReference = FirebaseStorage.instance
+        .ref()
+        .child('rentals/${DateTime.now().millisecondsSinceEpoch}.jpg');
     UploadTask uploadTask = storageReference.putFile(image);
     TaskSnapshot taskSnapshot = await uploadTask;
     return await taskSnapshot.ref.getDownloadURL();
   }
 
   Future<void> addRental(String imageUrl) {
-    CollectionReference rentals = FirebaseFirestore.instance.collection('rentals');
+    CollectionReference rentals =
+        FirebaseFirestore.instance.collection('rentals');
     return rentals
         .add({
-      'title': titleController.text,
-      'description': descriptionController.text,
-      'price': double.parse(priceController.text),
-      'imageUrl': imageUrl,
-    })
-        .then((value) =>  print("Rental Added"))
+          'title': titleController.text,
+          'description': descriptionController.text,
+          'price': double.parse(priceController.text),
+          'imageUrl': imageUrl,
+        })
+        .then((value) => print("Rental Added"))
         .catchError((error) => print("Failed to add rental: $error"));
   }
 
@@ -76,13 +79,40 @@ class _AddRentalFormState extends State<AddRentalForm> {
                 ? const Text('No image selected.')
                 : Image.file(_imageFile!, height: 100, width: 100),
             const SizedBox(height: 10),
+
             ElevatedButton(
-              onPressed: pickImage,
-              child: const Text('Pick Image'),
+              onPressed: () {
+                pickImage();
+              },
+              style: ElevatedButton.styleFrom(
+                shape: const StadiumBorder(),
+                backgroundColor: Colors.blue,
+                padding: const EdgeInsets.symmetric(vertical: 10),
+              ),
+              child: const SizedBox(
+                width: 125,
+                child: Text(
+                  "Pick Image ",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 20.0,
+                        color: Colors.black,
+                        offset: Offset(2, 1),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 20),
+
             ElevatedButton(
-              onPressed: () async {
+              onPressed: () async{
                 if (_imageFile != null) {
                   String imageUrl = await uploadImage(_imageFile!);
                   await addRental(imageUrl);
@@ -92,8 +122,32 @@ class _AddRentalFormState extends State<AddRentalForm> {
                   print("No image selected");
                 }
               },
-              child: const Text('Add Rental'),
+              style: ElevatedButton.styleFrom(
+                shape: const StadiumBorder(),
+                backgroundColor: Colors.blue,
+                padding: const EdgeInsets.symmetric(vertical: 10),
+              ),
+              child: const SizedBox(
+                width: 125,
+                child: Text(
+                  "Add Listing ",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 20.0,
+                        color: Colors.black,
+                        offset: Offset(2, 1),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
+
           ],
         ),
       ),

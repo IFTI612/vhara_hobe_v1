@@ -24,7 +24,7 @@ class _homeState extends State<HomePage> {
           drawer: const NavBar(),
           appBar: AppBar(
             shadowColor: Colors.white10,
-            title: const Text("app bar"), //size box diye korle valo
+            title: const Text("Home page"), //size box diye korle valo
           ),
           body: NestedScrollView(
             headerSliverBuilder: (BuildContext context, bool isScrolled) {
