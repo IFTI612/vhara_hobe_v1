@@ -16,7 +16,7 @@ class _NavBarState extends State<NavBar> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          UserAccountsDrawerHeader(
+          const UserAccountsDrawerHeader(
             accountName: Text('ABCD'),
             accountEmail: Text('abd@gmail.com'),
             currentAccountPicture: CircleAvatar(
@@ -34,37 +34,37 @@ class _NavBarState extends State<NavBar> {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.account_circle),
-            title: Text('Profile Link'),
+            leading: const Icon(Icons.account_circle),
+            title: const Text('Profile Link'),
             onTap: () => print('Profile'),
           ),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
-            onTap: () => print('settings'),
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () =>  print('settings'),
           ),
           ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text('Notifications'),
+            leading: const Icon(Icons.notifications),
+            title: const Text('Notifications'),
             onTap: () => print('upload file'),
           ),
           ListTile(
-            leading: Icon(Icons.recommend),
-            title: Text('Recommendations'),
+            leading: const Icon(Icons.recommend),
+            title: const Text('Recommendations'),
             onTap: () => print('Recommendations'),
           ),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text('My Listing'),
+            leading: const Icon(Icons.favorite),
+            title: const Text('My Listing'),
             onTap: () => print('My Listing'),
           ),
           ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('Logout'),
+            leading: const Icon(Icons.logout),
+            title: const Text('Logout'),
             onTap: () => <Future>{
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => login()),
+                MaterialPageRoute(builder: (context) => const login()),
               ),
             },
           ),
