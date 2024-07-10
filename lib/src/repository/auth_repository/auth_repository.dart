@@ -6,7 +6,6 @@ import 'package:vhara_hobe_v1/src/features/authentication/screens/login.dart';
 import 'package:vhara_hobe_v1/src/repository/auth_repository/exceptions/signup_email_password_failure.dart';
 
 
-
 class AuthRepository extends GetxController {
   static AuthRepository get instance => Get.find();
 

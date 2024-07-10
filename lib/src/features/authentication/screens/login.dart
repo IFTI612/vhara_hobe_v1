@@ -17,6 +17,8 @@ class _loginState extends State<login> {
   bool _obscureText = true;
   final c = Get.put(loginC());
 
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -147,9 +149,9 @@ class _loginState extends State<login> {
     loginC controller = Get.put(loginC());
     return ElevatedButton(
       onPressed: () {
-        //if(_formKey.currentState!.validate()){
-          loginC.instance.onLogin(controller.email.text.trim(), controller.pass.text.trim());
-        //}
+        loginC.instance.onLogin(controller.email.text.trim(), controller.pass.text.trim());
+        controller.email.clear();
+        controller.pass.clear();
       },
       child: SizedBox(
         width: 100,
@@ -214,5 +216,6 @@ class _loginState extends State<login> {
       ),
     );
   }
+
 }
 

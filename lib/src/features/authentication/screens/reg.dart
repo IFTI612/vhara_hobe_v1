@@ -203,10 +203,11 @@ class _regState extends State<reg> {
 
     regC controller = Get.put(regC());
     return ElevatedButton(onPressed: (){
-      //if(_formKey.currentState!.validate()){
-        regC.instance.registerUser(controller.email.text.trim(), controller.pass.text.trim());
-      //}
-
+      regC.instance.registerUser(controller.email.text.trim(), controller.pass.text.trim());
+      controller.email.clear();
+      controller.pass.clear();
+      controller.Confpass.clear();
+      controller.nid.clear();
     },
       child:SizedBox(width: 100,
         child: Text("Sign In",
