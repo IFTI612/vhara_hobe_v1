@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:vhara_hobe_v1/src/features/authentication/screens/home_page.dart';
 import 'package:vhara_hobe_v1/src/features/authentication/screens/login.dart';
+import 'package:vhara_hobe_v1/src/features/authentication/screens/messenger.dart';
 import 'package:vhara_hobe_v1/src/features/authentication/screens/splash.dart';
 import 'package:vhara_hobe_v1/src/repository/auth_repository/exceptions/signup_email_password_failure.dart';
 
@@ -53,7 +54,7 @@ class AuthRepository extends GetxController {
   Future<void> loginWithEmailAndPassword(String email, String pass) async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(email: email, password: pass);
-      firebaseUser.value != null ? Get.offAll(() => const HomePage()) :Get.offAll(() => const login());
+      firebaseUser.value != null ? Get.offAll(() => const messenger()) :Get.offAll(() => const login());
 
       _firestore.collection('users').doc(userCredential.user!.uid).set({
         'uid' : userCredential.user!.uid, //Username + NID needs to be added
