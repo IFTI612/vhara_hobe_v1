@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:ui';
-
 import 'package:vhara_hobe_v1/src/features/authentication/screens/login.dart';
-
 import '../controllers/regC.dart';
 
 class reg extends StatefulWidget {

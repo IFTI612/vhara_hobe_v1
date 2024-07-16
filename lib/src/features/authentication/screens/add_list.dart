@@ -1,9 +1,9 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AddRentalForm extends StatefulWidget {
   const AddRentalForm({super.key});
@@ -18,6 +18,8 @@ class _AddRentalFormState extends State<AddRentalForm> {
   final TextEditingController priceController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
   File? _imageFile;
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> pickImage() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
@@ -43,6 +45,7 @@ class _AddRentalFormState extends State<AddRentalForm> {
     return rentals
         .add({
           'title': titleController.text,
+          'uid': _auth.currentUser!.uid,
           'description': descriptionController.text,
           'price': double.parse(priceController.text),
           'imageUrl': imageUrl,
@@ -79,7 +82,6 @@ class _AddRentalFormState extends State<AddRentalForm> {
                 ? const Text('No image selected.')
                 : Image.file(_imageFile!, height: 100, width: 100),
             const SizedBox(height: 10),
-
             ElevatedButton(
               onPressed: () {
                 pickImage();
@@ -110,9 +112,8 @@ class _AddRentalFormState extends State<AddRentalForm> {
               ),
             ),
             const SizedBox(height: 20),
-
             ElevatedButton(
-              onPressed: () async{
+              onPressed: () async {
                 if (_imageFile != null) {
                   String imageUrl = await uploadImage(_imageFile!);
                   await addRental(imageUrl);
@@ -147,7 +148,6 @@ class _AddRentalFormState extends State<AddRentalForm> {
                 ),
               ),
             ),
-
           ],
         ),
       ),

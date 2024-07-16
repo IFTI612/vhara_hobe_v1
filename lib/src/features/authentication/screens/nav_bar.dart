@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vhara_hobe_v1/src/features/authentication/screens/messenger.dart';
-
+import 'package:vhara_hobe_v1/src/features/authentication/screens/my_listing.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'login.dart';
 
 class NavBar extends StatefulWidget {
@@ -12,6 +12,16 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  late User? firebaseUser;
+
+  @override
+  void initState() {
+    super.initState();
+    firebaseUser = _auth.currentUser;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -58,7 +68,14 @@ class _NavBarState extends State<NavBar> {
           ListTile(
             leading: const Icon(Icons.favorite),
             title: const Text('My Listing'),
-            onTap: () => print('My Listing'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyList(),
+                ),
+              );
+            },
           ),
           ListTile(
             leading: const Icon(Icons.message),
