@@ -44,7 +44,7 @@ class _regState extends State<reg> {
               fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
-              opacity: AlwaysStoppedAnimation(0.85),
+              opacity: const AlwaysStoppedAnimation(0.85),
             ),
             Positioned.fill(child:
             Container(
@@ -99,7 +99,7 @@ class _regState extends State<reg> {
 
   Widget _icon(){
     return Container(
-      child: Icon(Icons.account_circle,size: 100,color :Colors.brown),
+      child: const Icon(Icons.account_circle,size: 100,color :Colors.brown),
 
     );
 
@@ -115,9 +115,9 @@ class _regState extends State<reg> {
       style: const TextStyle(color: Colors.black),
       controller: controller,
       decoration: InputDecoration(
-        icon: Icon(Icons.person,  color: Color.fromARGB(255, 243, 255, 253), size: 40),
+        icon: const Icon(Icons.person,  color: Color.fromARGB(255, 243, 255, 253), size: 40),
         filled: true,
-        fillColor: Color.fromARGB(255, 243, 255, 253),
+        fillColor: const Color.fromARGB(255, 243, 255, 253),
         hintText: hintText,
         hintStyle: const TextStyle(color: Colors.black26),
         enabledBorder: border,
@@ -135,9 +135,9 @@ class _regState extends State<reg> {
       style: const TextStyle(color: Colors.black),
       controller: controller,
       decoration: InputDecoration(
-        icon: Icon(Icons.email,  color: Color.fromARGB(255, 243, 255, 253), size: 40),
+        icon: const Icon(Icons.email,  color: Color.fromARGB(255, 243, 255, 253), size: 40),
         filled: true,
-        fillColor: Color.fromARGB(255, 243, 255, 253),
+        fillColor: const Color.fromARGB(255, 243, 255, 253),
         hintText: hintText,
         hintStyle: const TextStyle(color: Colors.black26),
         enabledBorder: border,
@@ -155,9 +155,9 @@ class _regState extends State<reg> {
       style: const TextStyle(color: Colors.black),
       controller: controller,
       decoration: InputDecoration(
-        icon: Icon(Icons.card_travel,  color: Color.fromARGB(255, 243, 255, 253), size: 40),
+        icon: const Icon(Icons.card_travel,  color: Color.fromARGB(255, 243, 255, 253), size: 40),
         filled: true,
-        fillColor: Color.fromARGB(255, 243, 255, 253),
+        fillColor: const Color.fromARGB(255, 243, 255, 253),
         hintText: hintText,
         hintStyle: const TextStyle(color: Colors.black26),
         enabledBorder: border,
@@ -175,17 +175,17 @@ class _regState extends State<reg> {
       style: const TextStyle(color: Colors.black),
       controller: controller,
       decoration: InputDecoration(
-        icon: Icon(Icons.key,  color: Color.fromARGB(255, 243, 255, 253), size: 40),
+        icon: const Icon(Icons.key,  color: Color.fromARGB(255, 243, 255, 253), size: 40),
         filled: true,
-        fillColor: Color.fromARGB(255, 243, 255, 253),
+        fillColor: const Color.fromARGB(255, 243, 255, 253),
         hintText: hintText,
         hintStyle: const TextStyle(color: Colors.black26),
         enabledBorder: border,
         focusedBorder: border,
         suffixIcon: IconButton(
           padding: const EdgeInsets.only(right: 10),
-          icon: _obscureText ? Icon(Icons.remove_outlined, color: Colors.black, size: 30)
-              : Icon(Icons.remove_red_eye, color: Colors.black, size: 30),
+          icon: _obscureText ? const Icon(Icons.remove_outlined, color: Colors.black, size: 30)
+              : const Icon(Icons.remove_red_eye, color: Colors.black, size: 30),
           onPressed: () {
             setState(() {
               _obscureText = !_obscureText;
@@ -208,17 +208,17 @@ class _regState extends State<reg> {
       //}
 
     },
-      child:SizedBox(width: 100,
+
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromARGB(255, 250, 92, 97),
+        shape: const StadiumBorder(),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+      ),
+      child:const SizedBox(width: 100,
         child: Text("Sign In",
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 18 , color: Colors.black87),
         ),
-      ),
-
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(255, 250, 92, 97),
-        shape: const StadiumBorder(),
-        padding: const EdgeInsets.symmetric(vertical: 10),
       ),
 
     );
@@ -229,11 +229,11 @@ class _regState extends State<reg> {
 
     return TextButton(onPressed: (){
       Navigator.push(context,
-        MaterialPageRoute(builder: (context)=>login()),
+        MaterialPageRoute(builder: (context)=>const login()),
       );
     },
 
-      child:Text("Already registered?",
+      child:const Text("Already registered?",
         style: TextStyle(fontSize: 18 , color: Colors.amber),
       ),
 

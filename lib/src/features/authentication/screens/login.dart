@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vhara_hobe_v1/src/features/authentication/screens/home_page.dart';
 import 'package:vhara_hobe_v1/src/features/authentication/screens/reg.dart';
 
 import '../controllers/loginC.dart';
@@ -39,7 +38,7 @@ class _loginState extends State<login> {
               child: Image.asset("assets/images/Test.png",
                 fit: BoxFit.cover,
                 scale: 2,
-                opacity: AlwaysStoppedAnimation(0.9),
+                opacity: const AlwaysStoppedAnimation(0.9),
               ),
             ),
             _page(),
@@ -67,9 +66,9 @@ class _loginState extends State<login> {
               const SizedBox(height: 25),
               Row(
                 children: [
-                  SizedBox(width: 70),
+                  const SizedBox(width: 70),
                   _loginBtn(),
-                  SizedBox(width: 37),
+                  const SizedBox(width: 37),
                   _regButton(),
                 ],
               ),
@@ -100,11 +99,11 @@ class _loginState extends State<login> {
       style: const TextStyle(color: Colors.black),
       controller: controller,
       decoration: InputDecoration(
-        icon: Icon(Icons.person, color: Color.fromARGB(255, 243, 255, 253), size: 40,
+        icon: const Icon(Icons.person, color: Color.fromARGB(255, 243, 255, 253), size: 40,
 
         ),
         filled: true,
-        fillColor: Color.fromARGB(255, 243, 255, 253),
+        fillColor: const Color.fromARGB(255, 243, 255, 253),
         hintText: hintText,
         hintStyle: const TextStyle(color: Colors.black26),
         enabledBorder: border,
@@ -121,17 +120,17 @@ class _loginState extends State<login> {
       style: const TextStyle(color: Colors.black),
       controller: controller,
       decoration: InputDecoration(
-        icon: Icon(Icons.key, color: Color.fromARGB(255, 243, 255, 253), size: 40),
+        icon: const Icon(Icons.key, color: Color.fromARGB(255, 243, 255, 253), size: 40),
         filled: true,
-        fillColor: Color.fromARGB(255, 243, 255, 253),
+        fillColor: const Color.fromARGB(255, 243, 255, 253),
         hintText: hintText,
         hintStyle: const TextStyle(color: Colors.black26),
         enabledBorder: border,
         focusedBorder: border,
         suffixIcon: IconButton(
           padding: const EdgeInsets.only(right: 10),
-          icon: _obscureText ? Icon(Icons.remove_outlined, color: Colors.black, size: 30)
-              : Icon(Icons.remove_red_eye, color: Colors.black, size: 30),
+          icon: _obscureText ? const Icon(Icons.remove_outlined, color: Colors.black, size: 30)
+              : const Icon(Icons.remove_red_eye, color: Colors.black, size: 30),
           onPressed: () {
             setState(() {
               _obscureText = !_obscureText;
@@ -151,7 +150,12 @@ class _loginState extends State<login> {
           loginC.instance.onLogin(controller.email.text.trim(), controller.pass.text.trim());
         //}
       },
-      child: SizedBox(
+      style: ElevatedButton.styleFrom(
+        shape: const StadiumBorder(),
+        backgroundColor: const Color.fromARGB(255, 250, 92, 97),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+      ),
+      child: const SizedBox(
         width: 100,
         child: Text(
           "Login ",
@@ -167,16 +171,11 @@ class _loginState extends State<login> {
           ),
         ),
       ),
-      style: ElevatedButton.styleFrom(
-        shape: const StadiumBorder(),
-        backgroundColor: Color.fromARGB(255, 250, 92, 97),
-        padding: const EdgeInsets.symmetric(vertical: 10),
-      ),
     );
   }
 
   Widget _extrText() {
-    return Text(
+    return const Text(
       "Forgot Password?",
       style: TextStyle(fontSize: 18, color: Colors.amber, fontWeight:FontWeight.bold ),
 
@@ -188,10 +187,15 @@ class _loginState extends State<login> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => reg()),
+          MaterialPageRoute(builder: (context) => const reg()),
         );
       },
-      child: SizedBox(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromARGB(255, 250, 92, 97),
+        shape: const StadiumBorder(),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+      ),
+      child: const SizedBox(
         width: 100,
         child: Text(
           "Register ",
@@ -206,11 +210,6 @@ class _loginState extends State<login> {
             ],
           ),
         ),
-      ),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(255, 250, 92, 97),
-        shape: const StadiumBorder(),
-        padding: const EdgeInsets.symmetric(vertical: 10),
       ),
     );
   }

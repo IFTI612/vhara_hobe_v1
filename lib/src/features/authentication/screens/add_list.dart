@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,6 +20,7 @@ class _AddRentalFormState extends State<AddRentalForm> {
   final ImagePicker _picker = ImagePicker();
   File? _imageFile;
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   Future<void> pickImage() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     setState(() {
@@ -40,6 +42,7 @@ class _AddRentalFormState extends State<AddRentalForm> {
     return rentals
         .add({
       'title': titleController.text,
+      'uid' : _auth.currentUser!.uid,
       'description': descriptionController.text,
       'price': double.parse(priceController.text),
       'imageUrl': imageUrl,
