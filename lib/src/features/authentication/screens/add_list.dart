@@ -16,10 +16,20 @@ class _AddRentalFormState extends State<AddRentalForm> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
+  final _locationController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
   File? _imageFile;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    descriptionController.dispose();
+    priceController.dispose();
+    _locationController.dispose();
+    super.dispose();
+  }
 
   Future<void> pickImage() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
@@ -41,15 +51,16 @@ class _AddRentalFormState extends State<AddRentalForm> {
 
   Future<void> addRental(String imageUrl) {
     CollectionReference rentals =
-        FirebaseFirestore.instance.collection('rentals');
+    FirebaseFirestore.instance.collection('rentals');
     return rentals
         .add({
-          'title': titleController.text,
-          'uid': _auth.currentUser!.uid,
-          'description': descriptionController.text,
-          'price': double.parse(priceController.text),
-          'imageUrl': imageUrl,
-        })
+      'title': titleController.text,
+      'uid': _auth.currentUser!.uid,
+      'description': descriptionController.text,
+      'price': double.parse(priceController.text),
+      'location': _locationController.text,
+      'imageUrl': imageUrl,
+    })
         .then((value) => print("Rental Added"))
         .catchError((error) => print("Failed to add rental: $error"));
   }
@@ -78,6 +89,17 @@ class _AddRentalFormState extends State<AddRentalForm> {
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 10),
+            TextFormField(
+              controller: _locationController,
+              decoration: const InputDecoration(labelText: 'Location'),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter a location';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 10),
             _imageFile == null
                 ? const Text('No image selected.')
                 : Image.file(_imageFile!, height: 100, width: 100),
@@ -86,32 +108,23 @@ class _AddRentalFormState extends State<AddRentalForm> {
               onPressed: () {
                 pickImage();
               },
-              style: ElevatedButton.styleFrom(
-                shape: const StadiumBorder(),
-                backgroundColor: Colors.blue,
-                padding: const EdgeInsets.symmetric(vertical: 10),
-              ),
-              child: const SizedBox(
-                width: 125,
-                child: Text(
-                  "Pick Image ",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        blurRadius: 20.0,
-                        color: Colors.black,
-                        offset: Offset(2, 1),
-                      ),
-                    ],
-                  ),
+              child: const Text(
+                "Pick Image",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(
+                      blurRadius: 20.0,
+                      color: Colors.black,
+                      offset: Offset(2, 1),
+                    ),
+                  ],
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
             ElevatedButton(
               onPressed: () async {
                 if (_imageFile != null) {
@@ -123,28 +136,19 @@ class _AddRentalFormState extends State<AddRentalForm> {
                   print("No image selected");
                 }
               },
-              style: ElevatedButton.styleFrom(
-                shape: const StadiumBorder(),
-                backgroundColor: Colors.blue,
-                padding: const EdgeInsets.symmetric(vertical: 10),
-              ),
-              child: const SizedBox(
-                width: 125,
-                child: Text(
-                  "Add Listing ",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        blurRadius: 20.0,
-                        color: Colors.black,
-                        offset: Offset(2, 1),
-                      ),
-                    ],
-                  ),
+              child: const Text(
+                "Add Listing",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(
+                      blurRadius: 20.0,
+                      color: Colors.black,
+                      offset: Offset(2, 1),
+                    ),
+                  ],
                 ),
               ),
             ),

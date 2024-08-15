@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vhara_hobe_v1/src/features/authentication/screens/my_listing.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login.dart';
+import 'messenger.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
