@@ -40,7 +40,7 @@ class _NavBarState extends State<NavBar> {
             onTap: () => <Future>{
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyRegister()),
+                MaterialPageRoute(builder: (context) => Profile()),
               ),
             },
           ),
