@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'login.dart';
+import 'profile.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -36,7 +37,12 @@ class _NavBarState extends State<NavBar> {
           ListTile(
             leading: Icon(Icons.account_circle),
             title: Text('Profile Link'),
-            onTap: () => print('Profile'),
+            onTap: () => <Future>{
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyRegister()),
+              ),
+            },
           ),
           ListTile(
             leading: Icon(Icons.settings),
