@@ -4,6 +4,8 @@ import 'package:vhara_hobe_v1/src/features/authentication/screens/my_listing.dar
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login.dart';
 import 'messenger.dart';
+import 'profile_page.dart';
+
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -49,7 +51,12 @@ class _NavBarState extends State<NavBar> {
           ListTile(
             leading: const Icon(Icons.account_circle),
             title: const Text('Profile Link'),
-            onTap: () => print('Profile'),
+            onTap: () => <Future>{
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Profile()),
+              ),
+            },
           ),
           ListTile(
             leading: const Icon(Icons.settings),

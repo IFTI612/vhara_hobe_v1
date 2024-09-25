@@ -14,9 +14,11 @@ void main() async{
     options: const FirebaseOptions(apiKey: "AIzaSyC8lR7_2FOHriN9i0PO_Qbx_PTowRJ9VwM",
         appId: "1:571688300079:android:0fbc402d408b536029e0da",
         messagingSenderId: "571688300079",
-        projectId: "vara-hobe-v1"),
+        projectId: "vara-hobe-v1",
+    ),
   ).then((value)=>Get.put(AuthRepository()));
 
+ // production : false;
   runApp(const MyApp());
 }
 

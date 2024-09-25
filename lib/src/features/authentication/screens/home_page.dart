@@ -46,7 +46,7 @@ class _homeState extends State<HomePage> {
           onPressed: (){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AddRentalForm()),
+              MaterialPageRoute(builder: (context) => const AddRentalForm()),
             );
           },
         ),
