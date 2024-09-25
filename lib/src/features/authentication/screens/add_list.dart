@@ -60,6 +60,7 @@ class _AddRentalFormState extends State<AddRentalForm> {
       'price': double.parse(priceController.text),
       'location': _locationController.text,
       'imageUrl': imageUrl,
+      'email' : _auth.currentUser!.email,
     })
         .then((value) => print("Rental Added"))
         .catchError((error) => print("Failed to add rental: $error"));

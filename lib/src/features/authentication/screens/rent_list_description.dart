@@ -36,7 +36,7 @@ class RentDescriptionPage extends StatelessWidget {
             ),
             const SizedBox(height: 8.0),
             Text(
-              '\$${data['price'].toStringAsFixed(2)} per month',
+              '${data['price'].toStringAsFixed(2)} taka per month',
               style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 16.0),
@@ -59,7 +59,7 @@ class RentDescriptionPage extends StatelessWidget {
 
 
           // Navigate to the chat page
-          var receiverUserID;
+          var receiverUserID ;
           Navigator.push(
             context,
             MaterialPageRoute(
