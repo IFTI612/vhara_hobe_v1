@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vhara_hobe_v1/src/features/authentication/screens/rent_list.dart';
+import 'package:vhara_hobe_v1/src/features/authentication/screens/search_screen.dart';
 
 import '../controllers/home_pageC.dart';
 import 'add_list.dart';
@@ -63,7 +64,12 @@ class _homeState extends State<HomePage> {
       style: const TextStyle(color: Colors.black),
       controller: controller,
       decoration: InputDecoration(
-        icon: TextButton(onPressed: () {},
+        icon: TextButton(onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const SearchScreen()),
+          );
+        },
           child: const Icon(
             Icons.search, color: Color.fromARGB(255, 26, 24, 24), size: 40,
           ),

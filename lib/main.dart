@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vhara_hobe_v1/src/features/authentication/screens/search_screen.dart';
 import 'package:vhara_hobe_v1/src/features/authentication/screens/splash.dart';
 import 'package:vhara_hobe_v1/src/repository/auth_repository/auth_repository.dart';
 import 'package:vhara_hobe_v1/src/utils/theme/theme.dart';
@@ -34,8 +35,8 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
 
-      home: const splash(),
-
+      //home: const splash(),
+      home: const SearchScreen(),
 
     );
   }
