@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,17 +52,17 @@ class _AddRentalFormState extends State<AddRentalForm> {
 
   Future<void> addRental(String imageUrl) {
     CollectionReference rentals =
-    FirebaseFirestore.instance.collection('rentals');
+        FirebaseFirestore.instance.collection('rentals');
     return rentals
         .add({
-      'title': titleController.text,
-      'uid': _auth.currentUser!.uid,
-      'description': descriptionController.text,
-      'price': double.parse(priceController.text),
-      'location': _locationController.text,
-      'imageUrl': imageUrl,
-      'email' : _auth.currentUser!.email,
-    })
+          'title': titleController.text,
+          'uid': _auth.currentUser!.uid,
+          'description': descriptionController.text,
+          'price': double.parse(priceController.text),
+          'location': _locationController.text,
+          'imageUrl': imageUrl,
+          'email': _auth.currentUser!.email,
+        })
         .then((value) => print("Rental Added"))
         .catchError((error) => print("Failed to add rental: $error"));
   }
@@ -79,21 +80,55 @@ class _AddRentalFormState extends State<AddRentalForm> {
             children: <Widget>[
               TextField(
                 controller: titleController,
-                decoration: const InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(
+                  labelText: 'Title',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
               ),
+              const SizedBox(height: 30),
               TextField(
                 controller: descriptionController,
-                decoration: const InputDecoration(labelText: 'Description'),
+                decoration: const InputDecoration(
+                  labelText: 'Description',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
               ),
+              const SizedBox(height: 30),
               TextField(
                 controller: priceController,
-                decoration: const InputDecoration(labelText: 'Price'),
+                decoration: const InputDecoration(
+                  labelText: 'Price',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
                 keyboardType: TextInputType.number,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 30),
               TextFormField(
                 controller: _locationController,
-                decoration: const InputDecoration(labelText: 'Location'),
+                decoration: const InputDecoration(
+                  labelText: 'Location',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a location';
@@ -101,7 +136,7 @@ class _AddRentalFormState extends State<AddRentalForm> {
                   return null;
                 },
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 30),
               _imageFile == null
                   ? const Text('No image selected.')
                   : Image.file(_imageFile!, height: 100, width: 100),
