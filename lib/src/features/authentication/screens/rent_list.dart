@@ -48,8 +48,21 @@ class RentalList extends StatelessWidget {
                 child: ListTile(
                   leading: SizedBox(
                     width: 100,
-                    child: Image.network(data['imageUrl'],
-                      fit: BoxFit.cover,
+                    height: 200, // Added height constraint for consistent image size
+                    child: ClipRRect( // Added ClipRRect to clip overflowing parts
+                      borderRadius: BorderRadius.circular(8), // Adjust corner radius as desired
+                      child: Image.network(
+                        data['imageUrl'],
+                        fit: BoxFit.cover, // Maintain aspect ratio and cover the SizedBox
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container( // Display placeholder or error message
+                            color: Colors.grey[200],
+                            child: Center(
+                              child: Icon(Icons.error),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                   title: Text(data['title'], style: TextStyle(fontSize: 20)),

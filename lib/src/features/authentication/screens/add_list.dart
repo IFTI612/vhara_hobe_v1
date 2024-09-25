@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -78,6 +79,7 @@ class _AddRentalFormState extends State<AddRentalForm> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
+              const SizedBox(height: 50),
               TextField(
                 controller: titleController,
                 decoration: const InputDecoration(
@@ -138,30 +140,40 @@ class _AddRentalFormState extends State<AddRentalForm> {
               ),
               const SizedBox(height: 30),
               _imageFile == null
-                  ? const Text('No image selected.')
+                  ? const Text('No image selected!', style: TextStyle(fontWeight: FontWeight.bold),)
                   : Image.file(_imageFile!, height: 100, width: 100),
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
                   pickImage();
                 },
-                child: const Text(
-                  "Pick Image",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        blurRadius: 20.0,
-                        color: Colors.black,
-                        offset: Offset(2, 1),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.image, color: Colors.white),
+                    SizedBox(width: 16),
+                    Text(
+                      "Pick Image",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        shadows: [
+                          Shadow(
+                            blurRadius: 20.0,
+                            color: Colors.black,
+                            offset: Offset(2, 1),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
+                ),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(180, 50), // Hard-coding the size
                 ),
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
                   if (_imageFile != null) {
@@ -173,20 +185,30 @@ class _AddRentalFormState extends State<AddRentalForm> {
                     print("No image selected");
                   }
                 },
-                child: const Text(
-                  "Add Listing",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        blurRadius: 20.0,
-                        color: Colors.black,
-                        offset: Offset(2, 1),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.add_box_outlined, color: Colors.white),
+                    SizedBox(width: 16),
+                    Text(
+                      "Add Listing",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        shadows: [
+                          Shadow(
+                            blurRadius: 20.0,
+                            color: Colors.black,
+                            offset: Offset(2, 1),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
+                ),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(180, 50), // Hard-coding the size
                 ),
               ),
             ],
