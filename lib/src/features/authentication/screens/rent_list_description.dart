@@ -1,14 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'chatpage.dart';
+
 class RentDescriptionPage extends StatelessWidget {
   final DocumentSnapshot document;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   RentDescriptionPage({required this.document});
 
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+
+    final User? user = _auth.currentUser;
+    final String? currentUserId = user?.uid;
 
     return Scaffold(
       appBar: AppBar(
@@ -46,6 +53,23 @@ class RentDescriptionPage extends StatelessWidget {
             ),
             const SizedBox(height: 8.0),
             Text(data['location']),
+            const SizedBox(height: 15.0),
+      ElevatedButton(
+        onPressed: () {
+
+
+          // Navigate to the chat page
+          var receiverUserID;
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ChatPage(receiverUserID: receiverUserID, receiverEmail: receiverUserID),
+            ),
+          );
+        },
+        child: const Text('Chat with Seller'),
+      ),
+
           ],
         ),
       ),

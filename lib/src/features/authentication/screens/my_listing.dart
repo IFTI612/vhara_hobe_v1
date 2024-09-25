@@ -16,7 +16,7 @@ class MyList extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Listings'),
+        title: const Text('My Listings'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: rentals.where('uid', isEqualTo: currentUserId).snapshots(),
