@@ -17,6 +17,9 @@ class RentDescriptionPage extends StatelessWidget {
     final User? user = _auth.currentUser;
     final String? currentUserId = user?.uid;
 
+
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text(data['title']),
@@ -59,11 +62,12 @@ class RentDescriptionPage extends StatelessWidget {
 
 
           // Navigate to the chat page
-          var receiverUserID ;
+
+
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ChatPage(receiverUserID: receiverUserID, receiverEmail: receiverUserID),
+              builder: (context) => ChatPage(receiverUserID: data['uid'] ?? 'Default', receiverEmail: data['email']?? 'Default'),
             ),
           );
         },
