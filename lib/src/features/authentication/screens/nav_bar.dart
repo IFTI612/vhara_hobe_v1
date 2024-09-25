@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'login.dart';
 import 'messenger.dart';
 import 'profile_page.dart';
+import 'map.dart';
 
 
 class NavBar extends StatefulWidget {
@@ -69,9 +70,14 @@ class _NavBarState extends State<NavBar> {
             onTap: () => print('upload file'),
           ),
           ListTile(
-            leading: const Icon(Icons.recommend),
-            title: const Text('Recommendations'),
-            onTap: () => print('Recommendations'),
+            leading: const Icon(Icons.map),
+            title: const Text('Map'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MapView()),
+              );
+            },
           ),
           ListTile(
             leading: const Icon(Icons.favorite),
