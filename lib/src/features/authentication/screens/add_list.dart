@@ -73,86 +73,88 @@ class _AddRentalFormState extends State<AddRentalForm> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            TextField(
-              controller: titleController,
-              decoration: const InputDecoration(labelText: 'Title'),
-            ),
-            TextField(
-              controller: descriptionController,
-              decoration: const InputDecoration(labelText: 'Description'),
-            ),
-            TextField(
-              controller: priceController,
-              decoration: const InputDecoration(labelText: 'Price'),
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(height: 10),
-            TextFormField(
-              controller: _locationController,
-              decoration: const InputDecoration(labelText: 'Location'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter a location';
-                }
-                return null;
-              },
-            ),
-            const SizedBox(height: 10),
-            _imageFile == null
-                ? const Text('No image selected.')
-                : Image.file(_imageFile!, height: 100, width: 100),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                pickImage();
-              },
-              child: const Text(
-                "Pick Image",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  shadows: [
-                    Shadow(
-                      blurRadius: 20.0,
-                      color: Colors.black,
-                      offset: Offset(2, 1),
-                    ),
-                  ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(labelText: 'Title'),
+              ),
+              TextField(
+                controller: descriptionController,
+                decoration: const InputDecoration(labelText: 'Description'),
+              ),
+              TextField(
+                controller: priceController,
+                decoration: const InputDecoration(labelText: 'Price'),
+                keyboardType: TextInputType.number,
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                controller: _locationController,
+                decoration: const InputDecoration(labelText: 'Location'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a location';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 10),
+              _imageFile == null
+                  ? const Text('No image selected.')
+                  : Image.file(_imageFile!, height: 100, width: 100),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  pickImage();
+                },
+                child: const Text(
+                  "Pick Image",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 20.0,
+                        color: Colors.black,
+                        offset: Offset(2, 1),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: () async {
-                if (_imageFile != null) {
-                  String imageUrl = await uploadImage(_imageFile!);
-                  await addRental(imageUrl);
-                  Navigator.pop(context);
-                } else {
-                  // Handle the case when no image is selected
-                  print("No image selected");
-                }
-              },
-              child: const Text(
-                "Add Listing",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  shadows: [
-                    Shadow(
-                      blurRadius: 20.0,
-                      color: Colors.black,
-                      offset: Offset(2, 1),
-                    ),
-                  ],
+              const SizedBox(height: 15),
+              ElevatedButton(
+                onPressed: () async {
+                  if (_imageFile != null) {
+                    String imageUrl = await uploadImage(_imageFile!);
+                    await addRental(imageUrl);
+                    Navigator.pop(context);
+                  } else {
+                    // Handle the case when no image is selected
+                    print("No image selected");
+                  }
+                },
+                child: const Text(
+                  "Add Listing",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 20.0,
+                        color: Colors.black,
+                        offset: Offset(2, 1),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
